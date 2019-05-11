@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.add_friend_fragment.*
 
 
 class AddFriendFragment:Fragment (){
@@ -17,12 +18,13 @@ class AddFriendFragment:Fragment (){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.add_friend_fragment, container, false)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btnSave.setOnClickListener { (activity as MainActivity).tampilMyFriendFragment() }
     }
 
     override fun onDestroy() {

@@ -5,6 +5,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.my_friend_fragment.*
@@ -15,11 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //setSupportActionBar(toolbar)
+        tampilMyFriendFragment()
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -37,4 +36,20 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun gantiFragment(fragmentManager: FragmentManager,
+                              fragment:Fragment, frameId:Int){
+        val transaction =  fragmentManager.beginTransaction()
+        transaction.replace(frameId,fragment)
+        transaction.commit()
+    }
+    fun tampilMyFriendFragment(){
+        gantiFragment(supportFragmentManager,MyFriendFragment.newInstance(),
+            R.id.frameLayout)
+    }
+    fun tampilAddFriendFragment(){
+        gantiFragment(supportFragmentManager,AddFriendFragment.newInstance(),
+            R.id.frameLayout)
+    }
+
 }
